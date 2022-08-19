@@ -1,57 +1,51 @@
-//erstelle Objekt das rock paper scissor sein kann
-const handSign = new Map([
-    [0, "rock"],
-    [1, "paper"],
-    [2, "scissor"]]);
+const handSign = new Map ([
+    ["rock", "rock"],
+    ["paper", "paper"],
+    ["scissor", "scissor"]])
  
- 
- 
- const result = ["You win", "you loose", "there is a tie"]
- //erstelle Funktion, die random einer dieser Objekte sein kann
+ const resultMap = new Map([["win", "You win"], ["loose", "you loose"], ["tie", "there is a tie"]])
+
  function getComputerChoice(){
-   var randomIndex = Math.floor(Math.random() * 3)
-   return handSign.get(randomIndex)
+    var handSignArray = Array.from(handSign.values())
+    var randomIndex = Math.floor(Math.random() * 3)
+    return handSignArray[randomIndex]
  }
  
- function resultRound(computerChoice, userChoice){
-   //paper beats rock
-   //rock beats scissor
-   //scissor beats paper
-   //wenn einer papier hat und der andere rock, nehme rock
+ function getRoundResult(computerChoice, userChoice){
    console.log(userChoice.toLowerCase())
    console.log(computerChoice)
    switch(userChoice.toLowerCase()){
-     case "rock":
-       if (computerChoice == "rock"){
-         return result[2]
+     case handSign.get("rock"):
+       if (computerChoice == handSign.get("rock")){
+         return resultMap.get("tie")
        }
-       if (computerChoice == "paper"){
-         return result[1]
+       if (computerChoice == handSign.get("paper")){
+         return resultMap.get("loose")
        }
-       if (computerChoice == "scissor"){
-         return result[0]
+       if (computerChoice == handSign.get("scissor")){
+         return resultMap.get("win")
        }
        break;
-     case "paper":
-         if (computerChoice == "rock"){
-           return result[0]
+     case handSign.get("paper"):
+         if (computerChoice == handSign.get("rock")){
+           return resultMap.get("win")
          }
-         if (computerChoice == "paper"){
-           return result[2]
+         if (computerChoice == handSign.get("paper")){
+           return resultMap.get("tie")
          }
-         if (computerChoice == "scissor"){
-           return result[1]
+         if (computerChoice == handSign.get("scissor")){
+           return resultMap.get("loose")
          }
        break;
-      case "scissor":
-         if (computerChoice == "rock"){
-           return result[1]
+      case handSign.get("scissor"):
+         if (computerChoice == handSign.get("rock")){
+           return resultMap.get("loose")
          }
-         if (computerChoice == "paper"){
-           return result[0]
+         if (computerChoice == handSign.get("paper")){
+           return resultMap.get("win")
          }
-         if (computerChoice == "scissor"){
-           return result[2]
+         if (computerChoice == handSign.get("scissor")){
+           return resultMap.get("tie")
          }
         break;
        default:
