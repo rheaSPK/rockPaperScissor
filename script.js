@@ -54,7 +54,25 @@ const handSign = new Map ([
  }
  
  function game(){
-   for(let i = 0; i < 5; i++){
-     let userChoice = prompt("What do you want to choose")
-   }
+    let userPoints = 0
+    let computerPoints = 0
+    for(let i = 0; i < 5; i++){
+        let userChoice = prompt("Rock, Paper, Scissor?")
+        let roundResult = getRoundResult(getComputerChoice(), userChoice)
+        console.log(roundResult)
+        switch (roundResult){
+            case resultMap.get("win"):
+                userPoints++
+                break;
+            case resultMap.get("loose"):
+                computerPoints++
+                break;
+            default:
+                break;
+        }
+    }
+    
+    (userPoints - computerPoints) > 0 ? console.log("You win the Game") : (userPoints - computerPoints) == 0 ? console.log("No one wins") : console.log("You loose the Game")
  }
+
+ game()
